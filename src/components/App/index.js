@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import { SprayGate } from '../SprayGate';
+import { ROI } from '../ROI';
 
 import { setError,
 	 selectErrorOccured,
@@ -45,9 +46,14 @@ const App = () => {
     return <Router>
 	       <div className="container">
 		   <Switch>
+           <Route path="/roi">
+           <ROI />
+			   <Link to="/spray-gate"> Spray Gate</Link>
+           </Route>
 		       <Route path="/spray-gate">
 			   <SprayGate />
-			   <Link to="/"> Welcome </Link>
+			   <Link to="/roi"> ROI </Link>
+			   <Link to="/roi"> Welcome </Link>
 		       </Route>
 		       <Route path="/">
 			   <h1> Welcome</h1>

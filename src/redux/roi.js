@@ -44,6 +44,29 @@ export const selectCostOfLabor = (s) => s.roi.costOfLabor;
 export const selectPlotSize = (s) => s.roi.plotSize;
 export const selectPriceOfGrain = (s) => s.roi.priceOfGrain;
 
+export const selectROIResults = (s) => {
+  const priceOfGrain = selectPriceOfGrain(s);
+  const plotSize = selectPlotSize(s);
+  const costOfFungicide = selectCostOfFungicide(s);
+  const costOfLabor = selectCostOfLabor(s);
+  let out = [];
+  const keys = [
+    {
+      growthStage: "R1-R2",
+      sprays:1,
+      avgYield: .4845
+    }];
+  for (let key of keys) {
+    out.push({
+      incRev: key.avgYield * priceOfGrain,
+      incRevTotal: key.avgYield * priceOfGrain * plotSize,
+      revCosts: key.avgYield * priceOfGrain * plotSize - (costOfLabor + costOfFungicide * key.sprays),
+      ...key,
+    });
+  }
+  return out;
+}
+
 /* Reducer */
 //================================================================================
 export function roiReducer(state = roiInitialState, action) {

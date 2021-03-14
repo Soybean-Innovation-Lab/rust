@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -5,33 +6,33 @@ import {
     setGrowthStageSelection,
     setLocation,
     setVariety,
-    setSeason,
     selectRustPresenceOptions,
     selectGrowthStageOptions,
     selectRustPresenceSelection,
     selectGrowthStageSelection,
-    selectSeason,
     selectLocation,
     selectVariety,
     getShouldSpray, 
 } from '../../redux/spray_gate';
 
 import {
-    selectSeasons,
     selectValidLocations,
     selectValidVarieties,
-    selectSeasonLocationVarietySusceptible
+    selectLocationVarietySusceptible
 } from '../../redux/data';
 
-const GeneralSelector = ({valSelector, optionsSelector, action}) => {
+const GeneralSelector = ({name, valSelector, optionsSelector, action}) => {
     const dispatch = useDispatch();
 
     const idx = useSelector(valSelector);
     const options = useSelector(optionsSelector);
+    let temp = undefined;
     if ((!idx || !options.includes(idx)) && options.length > 0) {
-	dispatch(action(options[0]));
+	temp = options[0];
     }
-    return <select className="form-select"
+    useEffect(() => { if (temp) dispatch(action(temp))}, [temp]);
+    return <select name={name}
+		   className="form-select"
 		   onChange={(e) => dispatch(action(e.target.value))}
 		   value={idx}
 	   >
@@ -41,40 +42,49 @@ const GeneralSelector = ({valSelector, optionsSelector, action}) => {
 const SprayInfo = () => {
     const presence = useSelector(selectRustPresenceSelection);
     const stage = useSelector(selectGrowthStageSelection);
-    const season = useSelector(selectSeason);
     const location = useSelector(selectLocation);
     const variety = useSelector(selectVariety);
 
-    const sus = useSelector(selectSeasonLocationVarietySusceptible(season, location, variety));
+    const [sus, season] = useSelector(selectLocationVarietySusceptible(location, variety));
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     return <> <h1> You should {!shouldSpray.shouldSpray && "not"} spray </h1>
 	   <p> {shouldSpray.why} </p> </>;
 }
 export const SprayGate = () => {
-    const season = useSelector(selectSeason);
     const location = useSelector(selectLocation);
     const variety = useSelector(selectVariety);
 
-    const sus = useSelector(selectSeasonLocationVarietySusceptible(season, location, variety));
-    let susText = sus ? "Susceptible!" : "Not Susceptible!";
+    const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(location, variety));
+    let susText = sus ? "sot resistant!" : "resistant!";
+    let susNode = <>
+		      <h1> SIL Smart farm trials in {trialSeason} found your variety {susText} to rust infection</h1>
+		      <SprayInfo />
+		      </>;
+    if (sus === undefined) {
+	susNode = <> </>;
+    }
     return <div>
-	       <GeneralSelector valSelector={selectGrowthStageSelection}
+	       <label htmlFor="growthStage"> Growth Stage: </label>
+	       <GeneralSelector name="growthStage"
+				valSelector={selectGrowthStageSelection}
 				optionsSelector={selectGrowthStageOptions}
 				action={setGrowthStageSelection} />
-	       <GeneralSelector valSelector={selectRustPresenceSelection}
+	       <label htmlFor="rustPresence"> Rust Presence: </label>
+	       <GeneralSelector name="rustPresence"
+				valSelector={selectRustPresenceSelection}
 				optionsSelector={selectRustPresenceOptions}
 				action={setRustPresenceSelection} />
-	       <GeneralSelector valSelector={selectSeason}
-				optionsSelector={selectSeasons}
-				action={setSeason} />
-	       <GeneralSelector valSelector={selectLocation}
+	       <label htmlFor="location"> Location: </label>
+	       <GeneralSelector name="location"
+				valSelector={selectLocation}
 				optionsSelector={selectValidLocations}
 				action={setLocation} />
-	       <GeneralSelector valSelector={selectVariety}
+	       <label htmlFor="variety"> Variety: </label>
+	       <GeneralSelector name="variety"
+				valSelector={selectVariety}
 				optionsSelector={selectValidVarieties}
 				action={setVariety} />
-	       <h1> Your variety is {susText} </h1>
-	       <SprayInfo />
+	       {susNode}
 	   </div>;
 };
