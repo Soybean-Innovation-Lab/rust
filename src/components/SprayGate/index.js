@@ -39,7 +39,7 @@ const GeneralSelector = ({name, valSelector, optionsSelector, action}) => {
 	       {options.map((o) => <option key={o} value={o}> {o} </option>)}
 	   </select>;
 }
-const SprayInfo = () => {
+export const SprayInfo = () => {
     const presence = useSelector(selectRustPresenceSelection);
     const stage = useSelector(selectGrowthStageSelection);
     const location = useSelector(selectLocation);
@@ -48,8 +48,20 @@ const SprayInfo = () => {
     const [sus, season] = useSelector(selectLocationVarietySusceptible(location, variety));
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
-    return <> <h1> You should {!shouldSpray.shouldSpray && "not"} spray </h1>
-	   <p> {shouldSpray.why} </p> </>;
+    return <div>
+	       <h1>
+		   You should {!shouldSpray.shouldSpray && "not"} spray
+	       </h1>
+	       <p>
+		   {shouldSpray.why}
+	       </p>
+	       <p>
+		   Please keep in mind that spraying as well as the number of times you spray is
+		   dependent on conducive conditions for the disease. These recommendations are
+		   given based on the assumption of continued conducive environments and disease
+		   progression.
+	       </p>
+	   </div>;
 }
 export const SprayGate = () => {
     const location = useSelector(selectLocation);
@@ -58,9 +70,12 @@ export const SprayGate = () => {
     const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(location, variety));
     let susText = sus ? "sot resistant!" : "resistant!";
     let susNode = <>
-		      <h1> SIL Smart farm trials in {trialSeason} found your variety {susText} to rust infection</h1>
-		      <SprayInfo />
-		      </>;
+		      <h1> {variety} showed a {sus ? "TAN" : "RB"} during the&nbsp;
+			  {trialSeason} season at the {location} PAT
+			  location. This indicated this variety is {sus ?
+			  "susceptible" : "resistant"} to this location's rust
+		      population. </h1>
+		  </>;
     if (sus === undefined) {
 	susNode = <> </>;
     }
@@ -70,21 +85,27 @@ export const SprayGate = () => {
 				valSelector={selectGrowthStageSelection}
 				optionsSelector={selectGrowthStageOptions}
 				action={setGrowthStageSelection} />
-	       <label htmlFor="rustPresence"> Rust Presence: </label>
+	       <label htmlFor="rustPresence"> Rust Pressure: </label>
 	       <GeneralSelector name="rustPresence"
 				valSelector={selectRustPresenceSelection}
 				optionsSelector={selectRustPresenceOptions}
 				action={setRustPresenceSelection} />
-	       <label htmlFor="location"> Location: </label>
+	       <label htmlFor="location"> Nearest PAT Location: </label>
 	       <GeneralSelector name="location"
 				valSelector={selectLocation}
 				optionsSelector={selectValidLocations}
 				action={setLocation} />
-	       <label htmlFor="variety"> Variety: </label>
+	       <label htmlFor="variety"> Soybean Variety: </label>
 	       <GeneralSelector name="variety"
 				valSelector={selectVariety}
 				optionsSelector={selectValidVarieties}
 				action={setVariety} />
 	       {susNode}
+	       <p> Is your variety not listed? We may not have sufficient data
+	       to confirm resistance or susceptibility of a variety in your
+	       location. If you are interested in a variety not included on the
+	       list above, please contact us at <a
+	       href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu</a>
+	       </p>
 	   </div>;
 };

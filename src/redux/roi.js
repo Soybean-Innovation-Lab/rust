@@ -45,26 +45,54 @@ export const selectPlotSize = (s) => s.roi.plotSize;
 export const selectPriceOfGrain = (s) => s.roi.priceOfGrain;
 
 export const selectROIResults = (s) => {
-  const priceOfGrain = selectPriceOfGrain(s);
-  const plotSize = selectPlotSize(s);
-  const costOfFungicide = selectCostOfFungicide(s);
-  const costOfLabor = selectCostOfLabor(s);
-  let out = [];
-  const keys = [
+    const priceOfGrain = selectPriceOfGrain(s);
+    const plotSize = selectPlotSize(s);
+    const costOfFungicide = selectCostOfFungicide(s);
+    const costOfLabor = selectCostOfLabor(s);
+    let out = [];
+    const keys = [{
+	growthStage: "R1-R2",
+	sprays:1,
+	avgYield: .4845,
+    },
     {
-      growthStage: "R1-R2",
-      sprays:1,
-      avgYield: .4845
-    }];
-  for (let key of keys) {
-    out.push({
-      incRev: key.avgYield * priceOfGrain,
-      incRevTotal: key.avgYield * priceOfGrain * plotSize,
-      revCosts: key.avgYield * priceOfGrain * plotSize - (costOfLabor + costOfFungicide * key.sprays),
-      ...key,
-    });
-  }
-  return out;
+	growthStage: "R1-R2",
+	sprays:2,
+	avgYield: .9785
+    },
+    {
+	growthStage: "R1-R2",
+	sprays:3,
+	avgYield: 1.508
+    },
+    {
+	growthStage: "R3-R4",
+	sprays: 1,
+	avgYield: .717
+    },
+    {
+	growthStage: "R3-R4",
+	sprays:2,
+	avgYield: 1.164
+    },
+    {
+	growthStage: "R5-R6",
+	sprays:1,
+	avgYield: .7715
+    },
+		 ];
+    for (let key of keys) {
+	let incRev = key.avgYield * priceOfGrain;
+	let revCosts = incRev - key.sprays*(costOfLabor + costOfFungicide);
+	out.push({
+	    incRev: incRev,
+	    incRevTotal: key.avgYield * priceOfGrain * plotSize,
+	    revCosts: revCosts,
+	    returnOnIn: revCosts/(costOfFungicide*key.sprays),
+	    ...key,
+	});
+    }
+    return out;
 }
 
 /* Reducer */
