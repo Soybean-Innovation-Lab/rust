@@ -16,7 +16,14 @@ import {
 
 export const ROIInfo = () => {
     return <div>
-	       <h1> Info </h1>
+	       <h1> What is the economic gain of spraying fungicide?</h1>
+         <p className="fs-3">Even when there is a yield increase potential by fungicide
+         application, the cost of spraying and gross margin increases still need
+         to be considered to determine if spraying is an economically viable
+         option. Below please enter in the growth stage you plan to start
+         spraying your plants, the cost of fungicide per application per
+         hectare, plot size in hectares, and the price of grain. Please use <a href="https://www.xe.com/currencyconverter/" target="_blank">
+         this currency converter </a>to convert local currency to US Dollars ($) </p>
 	</div>;
 };
 
@@ -31,6 +38,8 @@ export const ROI = () => {
     const roi = useSelector(selectROIResults);
 
     return <div>
+      <h1> Return on Invest </h1>
+      <div className="border border-3 shadow shadow-3 p-3">
 	       <MakeInput name="costOfFungicide" state={costOfFungicide}
 			  set={setCostOfFungicide} units="/MT" formatter={(v) => `\$${v}`}>
 		   Cost of Fungicide
@@ -47,6 +56,7 @@ export const ROI = () => {
 			  set={setCostOfLabor} units="/spray/ha" formatter={(v) => `\$${v}`}>
 		   Cost of Labor
 	       </MakeInput>
+         </div>
 	       <table>
 		   <tr>
 		       <th>

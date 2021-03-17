@@ -12,7 +12,7 @@ import {
     selectGrowthStageSelection,
     selectLocation,
     selectVariety,
-    getShouldSpray, 
+    getShouldSpray,
 } from '../../redux/spray_gate';
 
 import {
@@ -21,7 +21,7 @@ import {
     selectLocationVarietySusceptible
 } from '../../redux/data';
 
-const GeneralSelector = ({name, valSelector, optionsSelector, action}) => {
+const GeneralSelector = ({name, valSelector, optionsSelector, action, className}) => {
     const dispatch = useDispatch();
 
     const idx = useSelector(valSelector);
@@ -32,7 +32,7 @@ const GeneralSelector = ({name, valSelector, optionsSelector, action}) => {
     }
     useEffect(() => { if (temp) dispatch(action(temp))}, [temp]);
     return <select name={name}
-		   className="form-select"
+		   className={`form-select ${className}` }
 		   onChange={(e) => dispatch(action(e.target.value))}
 		   value={idx}
 	   >
@@ -49,12 +49,14 @@ export const SprayInfo = () => {
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     return <div>
-	       <h1>
+    <div className="border border-3 shadow shadow-3 p-3 mx-auto my-5" style={{"width":"max-content"}}>
+	       <h2 className="text-center">
 		   You should {!shouldSpray.shouldSpray && "not"} spray
-	       </h1>
-	       <p>
+	       </h2>
+	       <p className="text-center">
 		   {shouldSpray.why}
 	       </p>
+         </div>
 	       <p>
 		   Please keep in mind that spraying as well as the number of times you spray is
 		   dependent on conducive conditions for the disease. These recommendations are
@@ -69,43 +71,54 @@ export const SprayGate = () => {
 
     const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(location, variety));
     let susText = sus ? "sot resistant!" : "resistant!";
-    let susNode = <>
-		      <h1> {variety} showed a {sus ? "TAN" : "RB"} during the&nbsp;
-			  {trialSeason} season at the {location} PAT
-			  location. This indicated this variety is {sus ?
-			  "susceptible" : "resistant"} to this location's rust
-		      population. </h1>
-		  </>;
+    let susNode = <div className={`border border-3 ${sus ? "border-danger" : "border-success"} shadow shadow-4 p-3 mt-3 text-center`}>
+		      <p className="fs-2 m-0"> <span className="text-decoration-underline">{variety}</span> showed a &nbsp;
+          <span className="text-decoration-underline">{sus ? "TAN" : "RB"}</span>&nbsp;
+           during the&nbsp;
+			  <span className="text-decoration-underline">{trialSeason}</span> season at the &nbsp;
+        <span className="text-decoration-underline">{location}</span> PAT
+			  location. </p>
+        <p className="fs-2 m-0">This indicated this variety is&nbsp;
+        <span className="text-decoration-underline">{sus ? "susceptible" : "resistant"}
+        </span> to this location's rust
+		      population. </p>
+		  </div>;
     if (sus === undefined) {
 	susNode = <> </>;
     }
-    return <div>
-	       <label htmlFor="growthStage"> Growth Stage: </label>
-	       <GeneralSelector name="growthStage"
+    return <div className="mb-3">
+    <div className="border border-3 shadow shadow-4 p-3">
+    <div className="row" style={{"width": "max-content"}}>
+	       <label className="col my-auto" htmlFor="growthStage"> Growth Stage: </label>
+	       <GeneralSelector className="col"  name="growthStage"
 				valSelector={selectGrowthStageSelection}
 				optionsSelector={selectGrowthStageOptions}
 				action={setGrowthStageSelection} />
-	       <label htmlFor="rustPresence"> Rust Pressure: </label>
-	       <GeneralSelector name="rustPresence"
+        </div>
+        <div className="row">
+	       <label className="col-md" htmlFor="rustPresence"> Rust Pressure: </label>
+	       <GeneralSelector className="col-md" name="rustPresence"
 				valSelector={selectRustPresenceSelection}
 				optionsSelector={selectRustPresenceOptions}
 				action={setRustPresenceSelection} />
-	       <label htmlFor="location"> Nearest PAT Location: </label>
-	       <GeneralSelector name="location"
+        </div>
+        <div className="row">
+	       <label className="col-md" htmlFor="location"> Nearest PAT Location: </label>
+	       <GeneralSelector className="col-md" name="location"
 				valSelector={selectLocation}
 				optionsSelector={selectValidLocations}
 				action={setLocation} />
-	       <label htmlFor="variety"> Soybean Variety: </label>
-	       <GeneralSelector name="variety"
+        </div>
+        <div className="row">
+	       <label htmlFor="variety" className="col-md"> Soybean Variety: </label>
+	       <GeneralSelector
+         className="col-md"
+         name="variety"
 				valSelector={selectVariety}
 				optionsSelector={selectValidVarieties}
 				action={setVariety} />
+        </div>
+        </div>
 	       {susNode}
-	       <p> Is your variety not listed? We may not have sufficient data
-	       to confirm resistance or susceptibility of a variety in your
-	       location. If you are interested in a variety not included on the
-	       list above, please contact us at <a
-	       href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu</a>
-	       </p>
 	   </div>;
 };

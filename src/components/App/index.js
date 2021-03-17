@@ -7,6 +7,23 @@ import {
     Link
 } from "react-router-dom";
 
+import {
+    setRustPresenceSelection,
+    setGrowthStageSelection,
+    setLocation,
+    setVariety,
+    selectRustPresenceOptions,
+    selectGrowthStageOptions,
+    selectRustPresenceSelection,
+    selectGrowthStageSelection,
+    selectLocation,
+    selectVariety,
+    getShouldSpray,
+} from '../../redux/spray_gate';
+import {
+    selectLocationVarietySusceptible
+} from '../../redux/data';
+
 import { SprayGate, SprayInfo } from '../SprayGate';
 import { ROI, ROIInfo } from '../ROI';
 
@@ -16,6 +33,15 @@ import { setError,
 	 selectLoading,
 	 setData } from '../../redux/data';
 
+const NavigationComponent = ({leftLink, leftText, rightLink, rightText, rightClassName})=> {
+  return <div className="d-flex w-100 flex-direction-row justify-content-between">
+  <Link className={`px-3 btn btn-lg btn-primary ${leftLink ? "visible" : "invisible"}`} to={leftLink || ""}>
+  <i class="bi bi-arrow-left" style={{"font-size":"1.5rem"}}></i> {leftText} </Link>
+  <Link className={`px-3 btn btn-lg btn-primary ${rightLink ? "visible" : "invisible"} ${rightClassName}`} to={rightLink || ""}>
+  {rightText} <i class="bi bi-arrow-right" style={{"font-size":"1.5rem"}}></i></Link>
+  </div>;
+}
+
 const App = () => {
     const dispatch = useDispatch();
 
@@ -23,6 +49,14 @@ const App = () => {
     const error = useSelector(selectError);
     const loading = useSelector(selectLoading);
 
+    const presence = useSelector(selectRustPresenceSelection);
+    const stage = useSelector(selectGrowthStageSelection);
+    const location = useSelector(selectLocation);
+    const variety = useSelector(selectVariety);
+
+    const [sus, season] = useSelector(selectLocationVarietySusceptible(location, variety));
+
+    const shouldSpray = getShouldSpray(stage, presence, sus);
     const DATA_URL = `${process.env.PUBLIC_URL}/data.json`;
     useEffect(() => {
 	fetch(DATA_URL)
@@ -48,19 +82,24 @@ const App = () => {
 		   <Switch>
 		       <Route path="/roi">
 			   <ROI />
-			   <Link to="/roi-info"> ROI Info</Link>
+            <NavigationComponent leftText="ROI Info"
+                                 leftLink="/roi-info"/>
 		       </Route>
 		       <Route path="/roi-info">
 			   <ROIInfo />
-			   <Link to="/roi"> ROI </Link>
-			   <Link to="/spray-results"> Spray Results</Link>
+            <NavigationComponent rightLink="/roi"
+                                 rightText="ROI"
+                                 leftText="Spray Results"
+                                 leftLink="/spray-results"/>
 		       </Route>
 		       <Route path="/spray-results">
-			   <h1> Should I Spray? </h1>
-			   <h2> Results </h2>
+			   <h1> Should I Spray? &mdash; Results</h1>
 			   <SprayInfo />
-			   <Link to="/spray-gate"> Spray Info</Link>
-			   <Link to="/roi-info"> ROI </Link>
+            <NavigationComponent rightLink="/roi-info"
+                                 rightText="ROI Info"
+                                 rightClassName={shouldSpray.shouldSpray ? "" : "disabled"}
+                                 leftText="Spray Info"
+                                 leftLink="/spray-gate"/>
 		       </Route>
 		       <Route path="/spray-gate">
 			   <h1> Should I Spray? </h1>
@@ -71,9 +110,17 @@ const App = () => {
 			       are using along with the nearest PAT location. The location and variety
 			       combination will allow us to determine if your variety is susceptible to your
 			   local rust population.  </p>
+	       <p> Is your variety not listed? We may not have sufficient data
+	       to confirm resistance or susceptibility of a variety in your
+	       location. If you are interested in a variety not included on the
+	       list above, please contact us at <a
+	       href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu</a>
+	       </p>
 			   <SprayGate />
-			   <Link to="/spray-results"> Spray Results</Link>
-			   <Link to="/"> Welcome </Link>
+            <NavigationComponent rightLink="/spray-results"
+                                 rightText="Spray Results"
+                                 leftText="Welcome"
+                                 leftLink="/"/>
 		       </Route>
 		       <Route path="/">
 			   <h1> Rust Spray Calculator</h1>
@@ -126,7 +173,7 @@ const App = () => {
 			   effective rust control. Please consult your extension
 			   agent on what products are registered in your area.
 			       </p>
-			   <Link to="/spray-gate">Spray Gate </Link>
+            <NavigationComponent rightLink="/spray-gate" rightText="Spray Gate" />
 		       </Route>
 		   </Switch>
 	       </div>
