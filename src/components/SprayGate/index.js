@@ -87,38 +87,38 @@ export const SprayGate = () => {
 	susNode = <> </>;
     }
     return <div className="mb-3">
-    <div className="border border-3 shadow shadow-4 p-3">
-    <div className="row" style={{"width": "max-content"}}>
-	       <label className="col my-auto" htmlFor="growthStage"> Growth Stage: </label>
-	       <GeneralSelector className="col"  name="growthStage"
-				valSelector={selectGrowthStageSelection}
-				optionsSelector={selectGrowthStageOptions}
-				action={setGrowthStageSelection} />
-        </div>
-        <div className="row">
-	       <label className="col-md" htmlFor="rustPresence"> Rust Pressure: </label>
-	       <GeneralSelector className="col-md" name="rustPresence"
-				valSelector={selectRustPresenceSelection}
-				optionsSelector={selectRustPresenceOptions}
-				action={setRustPresenceSelection} />
-        </div>
-        <div className="row">
-	       <label className="col-md" htmlFor="location"> Nearest PAT Location: </label>
-	       <GeneralSelector className="col-md" name="location"
-				valSelector={selectLocation}
-				optionsSelector={selectValidLocations}
-				action={setLocation} />
-        </div>
-        <div className="row">
-	       <label htmlFor="variety" className="col-md"> Soybean Variety: </label>
-	       <GeneralSelector
-         className="col-md"
-         name="variety"
-				valSelector={selectVariety}
-				optionsSelector={selectValidVarieties}
-				action={setVariety} />
-        </div>
-        </div>
+	       <div className="border border-3 shadow shadow-4 p-3">
+		   <div className="row">
+		       <label className="col-md my-auto" htmlFor="growthStage"> Growth Stage: </label>
+		       <GeneralSelector className="col-md"  name="growthStage"
+					valSelector={selectGrowthStageSelection}
+					optionsSelector={selectGrowthStageOptions}
+					action={setGrowthStageSelection} />
+		   </div>
+		   <div className="row">
+		       <label className="col-md my-auto" htmlFor="rustPresence"> Rust Pressure: </label>
+		       <GeneralSelector className="col-md" name="rustPresence"
+					valSelector={selectRustPresenceSelection}
+					optionsSelector={selectRustPresenceOptions}
+					action={setRustPresenceSelection} />
+		   </div>
+		   <div className="row">
+		       <label className="col-md my-auto" htmlFor="location"> Nearest PAT Location: </label>
+		       <GeneralSelector className="col-md" name="location"
+					valSelector={selectLocation}
+					optionsSelector={selectValidLocations}
+					action={setLocation} />
+		   </div>
+		   <div className="row">
+		       <label htmlFor="variety" className="col-md my-auto"> Soybean Variety: </label>
+		       <GeneralSelector
+			   className="col-md"
+			   name="variety"
+			   valSelector={selectVariety}
+			   optionsSelector={selectValidVarieties}
+			   action={setVariety} />
+		   </div>
+	       </div>
 	       {susNode}
 	   </div>;
 };

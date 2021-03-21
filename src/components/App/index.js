@@ -105,7 +105,7 @@ const App = () => {
 			   <h1> Should I Spray? </h1>
 			   <p> Deciding to spray fungicides to control rust is
 			       dependent on several factors including age of the plant, susceptibility to rust,
-			       presence of rust if the field, and conducive environment. Below please enter the
+			       presence of rust in the field, and conducive environment. Below please enter the
 			       current growth stage of your crop, current rust pressure, and what variety you
 			       are using along with the nearest PAT location. The location and variety
 			       combination will allow us to determine if your variety is susceptible to your
@@ -125,7 +125,7 @@ const App = () => {
 		       <Route path="/">
 			   <h1> Rust Spray Calculator</h1>
 			   <p>
-			   <a
+			   <a target="_blank"
 			       href="https://7b7dcda8-7264-4c41-b9a2-b2e845d0c5d1.usrfiles.com/ugd/7b7dcd_e31432ab4564440d86637434fe1dd580.pdf">
 			       Soybean rust
 			   </a>&nbsp;
