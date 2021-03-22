@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/rust/dev/static/css/main.dfc49db7.chunk.css",
-    "main.js": "/rust/dev/static/js/main.415ace29.chunk.js",
-    "main.js.map": "/rust/dev/static/js/main.415ace29.chunk.js.map",
+    "main.js": "/rust/dev/static/js/main.b4fc0fe7.chunk.js",
+    "main.js.map": "/rust/dev/static/js/main.b4fc0fe7.chunk.js.map",
     "runtime-main.js": "/rust/dev/static/js/runtime-main.07c5a241.js",
     "runtime-main.js.map": "/rust/dev/static/js/runtime-main.07c5a241.js.map",
     "static/css/2.35146c58.chunk.css": "/rust/dev/static/css/2.35146c58.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.35146c58.chunk.css",
     "static/js/2.f1cb411d.chunk.js",
     "static/css/main.dfc49db7.chunk.css",
-    "static/js/main.415ace29.chunk.js"
+    "static/js/main.b4fc0fe7.chunk.js"
   ]
 }
