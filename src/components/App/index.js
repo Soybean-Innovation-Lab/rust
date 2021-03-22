@@ -34,7 +34,7 @@ import { setError,
 	 setData } from '../../redux/data';
 
 const NavigationComponent = ({leftLink, leftText, rightLink, rightText, rightClassName})=> {
-  return <div className="d-flex w-100 flex-direction-row justify-content-between">
+  return <div className="d-flex w-100 flex-direction-row justify-content-between mb-3">
   <Link className={`px-3 btn btn-lg btn-primary ${leftLink ? "visible" : "invisible"}`} to={leftLink || ""}>
   <i class="bi bi-arrow-left" style={{"font-size":"1.5rem"}}></i> {leftText} </Link>
   <Link className={`px-3 btn btn-lg btn-primary ${rightLink ? "visible" : "invisible"} ${rightClassName}`} to={rightLink || ""}>
@@ -156,11 +156,14 @@ const App = () => {
 			   </p>
 
 			   <h2>Fungicide Safety</h2>
-			   <p>There are environmental and human
-			   health hazards when spraying fungicides. Please take
-			   our SIL-U course on pesticide safety before applying
-			   fungicides to your fields.
-			       </p>
+			   <p>There are environmental and human health hazards
+			       when spraying fungicides. Please take our <a
+				   href="https://soybeaninnovationlab.getlearnworlds.com/course?courseid=ipm"
+				   target="_blank">SIL-U
+			       </a> course on pesticide
+			       safety before applying fungicides to your fields
+			       (a free account is required to access the
+			       course).  </p>
 
 			       <p>
 			   <h2>Avoiding Fungicide Resistance</h2> Misuse, including
