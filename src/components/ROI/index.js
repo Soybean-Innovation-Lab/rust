@@ -38,26 +38,39 @@ export const ROI = () => {
     const roi = useSelector(selectROIResults);
 
     return <div>
-      <h1> Return on Invest </h1>
-      <div className="border border-3 shadow shadow-3 p-3">
-	       <MakeInput name="costOfFungicide" state={costOfFungicide}
-			  set={setCostOfFungicide} units="/MT" formatter={(v) => `\$${v}`}>
-		   Cost of Fungicide
+      <h1> Return on Investment </h1>
+	       <div className="border border-3 shadow shadow-3 p-3 px-5 mx-auto" style={{"width":"max-content"}}>
+	<div className="row my-1">
+	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
+		       name="costOfFungicide" state={costOfFungicide}
+		       set={setCostOfFungicide} units="/MT" formatter={(v) => `\$${v}`}>
+		Cost of Fungicide
+	    </MakeInput>
+	</div>
+	<div className="row my-1">
+	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
+		       name="plotSize" state={plotSize}
+		       set={plotSize} units="ha">
+		Plot Size
 	       </MakeInput>
-	       <MakeInput name="plotSize" state={plotSize}
-			  set={plotSize} units="ha">
-		   Plot Size
+	</div>
+	<div className="row my-1">
+	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
+		       name="priceOfGrain" state={priceOfGrain}
+		       set={setPriceOfGrain} units="/MT" formatter={(v) => `\$${v}`}>
+		Price of Grain
 	       </MakeInput>
-	       <MakeInput name="priceOfGrain" state={priceOfGrain}
-			  set={setPriceOfGrain} units="/MT" formatter={(v) => `\$${v}`}>
-		   Price of Grain
+	</div>
+	<div className="row my-1">
+	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
+		       name="costOfLabor" state={costOfLabor}
+		       set={setCostOfLabor} units="/spray/ha" formatter={(v) => `\$${v}`}>
+		Cost of Labor
 	       </MakeInput>
-	       <MakeInput name="costOfLabor" state={costOfLabor}
-			  set={setCostOfLabor} units="/spray/ha" formatter={(v) => `\$${v}`}>
-		   Cost of Labor
-	       </MakeInput>
+	</div>
          </div>
-	       <table>
+	       <table className="table border border-3 my-3 mx-auto">
+		   <thead>
 		   <tr>
 		       <th>
 			   Growth Stage
@@ -81,6 +94,8 @@ export const ROI = () => {
 			   Return on inputs
 		       </th>
 		   </tr>
+		       </thead>
+		   <tbody>
 		   {roi.map((d) => (
 		       <tr>
 			   <td>
@@ -90,26 +105,27 @@ export const ROI = () => {
 			       {d.sprays}
 			   </td>
 			   <td>
-			       {d.avgYield}
+			       ${d.avgYield.toFixed(2)}
 			   </td>
 			   <td>
-			       {d.incRev}
+			       ${d.incRev.toFixed(2)}
 			   </td>
 			   <td>
-			       {d.incRevTotal}
+			       ${d.incRevTotal.toFixed(2)}
 			   </td>
 			   <td>
-			       {d.revCosts}
+			       ${d.revCosts.toFixed(2)}
 			   </td>
 			   <td>
-			       {d.returnOnIn}
+			       ${d.returnOnIn.toFixed(2)}
 			   </td>
 		       </tr>
 		   ))}
+		       </tbody>
 	       </table>
+	       <div className="border border-3 shadow shadow-3 my-3 p-3">
+		   <h3> Definitions </h3>
 	       <dl class="row">
-	       <dt class="col-sm-3">Description lists</dt>
-	       <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
 		   <dt class="col-sm-3">Average yield increases</dt>
 		   <dd class="col-sm-9">based on timing and number of sprays are estimated based on select locations in Mueller, et al. 2009. Plant Disease 93(3):243-248. Yield increases from fungicide application are highly dependent on rust pressure. These averages are based on moderate rust pressure and will be lower or higher depending on conducive environment. </dd>
 
@@ -123,6 +139,7 @@ export const ROI = () => {
 		   <dt class="col-sm-3">Return on inputs</dt>
 		   <dd class="col-sm-9">is the gross margin/ha divided by the cost of fungicide/ha multiplied by the number of sprays. </dd>
 	       </dl>
+		   </div>
 
 
     </div>;

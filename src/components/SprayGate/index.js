@@ -74,7 +74,7 @@ export const SprayGate = () => {
     let susNode = <div className={`border border-3 ${sus ? "border-danger" : "border-success"} shadow shadow-4 p-3 mt-3 text-center`}>
 		      <p className="fs-2 m-0"> <span className="text-decoration-underline">{variety}</span> showed a &nbsp;
           <span className="text-decoration-underline">{sus ? "TAN" : "RB"}</span>&nbsp;
-           during the&nbsp;
+           reaction during the&nbsp;
 			  <span className="text-decoration-underline">{trialSeason}</span> season at the &nbsp;
         <span className="text-decoration-underline">{location}</span> PAT
 			  location. </p>
