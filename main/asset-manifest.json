@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/rust/main/static/css/main.92175dc8.chunk.css",
-    "main.js": "/rust/main/static/js/main.7c24d610.chunk.js",
-    "main.js.map": "/rust/main/static/js/main.7c24d610.chunk.js.map",
-    "runtime-main.js": "/rust/main/static/js/runtime-main.73634760.js",
-    "runtime-main.js.map": "/rust/main/static/js/runtime-main.73634760.js.map",
-    "static/js/2.d53fd300.chunk.js": "/rust/main/static/js/2.d53fd300.chunk.js",
-    "static/js/2.d53fd300.chunk.js.map": "/rust/main/static/js/2.d53fd300.chunk.js.map",
-    "static/js/3.f6d7fa7f.chunk.js": "/rust/main/static/js/3.f6d7fa7f.chunk.js",
-    "static/js/3.f6d7fa7f.chunk.js.map": "/rust/main/static/js/3.f6d7fa7f.chunk.js.map",
+    "main.css": "/rust/main/static/css/main.dfc49db7.chunk.css",
+    "main.js": "/rust/main/static/js/main.f0c5e2e3.chunk.js",
+    "main.js.map": "/rust/main/static/js/main.f0c5e2e3.chunk.js.map",
+    "runtime-main.js": "/rust/main/static/js/runtime-main.1ad22329.js",
+    "runtime-main.js.map": "/rust/main/static/js/runtime-main.1ad22329.js.map",
+    "static/css/2.c42225b6.chunk.css": "/rust/main/static/css/2.c42225b6.chunk.css",
+    "static/js/2.f1cb411d.chunk.js": "/rust/main/static/js/2.f1cb411d.chunk.js",
+    "static/js/2.f1cb411d.chunk.js.map": "/rust/main/static/js/2.f1cb411d.chunk.js.map",
+    "static/js/3.c29462fe.chunk.js": "/rust/main/static/js/3.c29462fe.chunk.js",
+    "static/js/3.c29462fe.chunk.js.map": "/rust/main/static/js/3.c29462fe.chunk.js.map",
     "index.html": "/rust/main/index.html",
-    "static/css/main.92175dc8.chunk.css.map": "/rust/main/static/css/main.92175dc8.chunk.css.map",
-    "static/js/2.d53fd300.chunk.js.LICENSE.txt": "/rust/main/static/js/2.d53fd300.chunk.js.LICENSE.txt"
+    "static/css/2.c42225b6.chunk.css.map": "/rust/main/static/css/2.c42225b6.chunk.css.map",
+    "static/css/main.dfc49db7.chunk.css.map": "/rust/main/static/css/main.dfc49db7.chunk.css.map",
+    "static/js/2.f1cb411d.chunk.js.LICENSE.txt": "/rust/main/static/js/2.f1cb411d.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/rust/main/static/media/bootstrap-icons.cc252f2c.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.73634760.js",
-    "static/js/2.d53fd300.chunk.js",
-    "static/css/main.92175dc8.chunk.css",
-    "static/js/main.7c24d610.chunk.js"
+    "static/js/runtime-main.1ad22329.js",
+    "static/css/2.c42225b6.chunk.css",
+    "static/js/2.f1cb411d.chunk.js",
+    "static/css/main.dfc49db7.chunk.css",
+    "static/js/main.f0c5e2e3.chunk.js"
   ]
 }
