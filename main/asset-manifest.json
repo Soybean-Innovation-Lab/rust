@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rust/main/static/css/main.92175dc8.chunk.css",
+    "main.js": "/rust/main/static/js/main.7c24d610.chunk.js",
+    "main.js.map": "/rust/main/static/js/main.7c24d610.chunk.js.map",
+    "runtime-main.js": "/rust/main/static/js/runtime-main.73634760.js",
+    "runtime-main.js.map": "/rust/main/static/js/runtime-main.73634760.js.map",
+    "static/js/2.d53fd300.chunk.js": "/rust/main/static/js/2.d53fd300.chunk.js",
+    "static/js/2.d53fd300.chunk.js.map": "/rust/main/static/js/2.d53fd300.chunk.js.map",
+    "static/js/3.f6d7fa7f.chunk.js": "/rust/main/static/js/3.f6d7fa7f.chunk.js",
+    "static/js/3.f6d7fa7f.chunk.js.map": "/rust/main/static/js/3.f6d7fa7f.chunk.js.map",
+    "index.html": "/rust/main/index.html",
+    "static/css/main.92175dc8.chunk.css.map": "/rust/main/static/css/main.92175dc8.chunk.css.map",
+    "static/js/2.d53fd300.chunk.js.LICENSE.txt": "/rust/main/static/js/2.d53fd300.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.73634760.js",
+    "static/js/2.d53fd300.chunk.js",
+    "static/css/main.92175dc8.chunk.css",
+    "static/js/main.7c24d610.chunk.js"
+  ]
+}
