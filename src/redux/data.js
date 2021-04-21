@@ -27,26 +27,49 @@ export const selectError = s => s.data.error;
 export const selectErrorOccured = s => s.data.errorOccured;
 export const selectLoading = s => s.data.loading;
 
-export const selectSeasons = s => Object.keys(s.data.data);
 // This may be a bad idea, but I'm gonna try it (I mean referring to external data)
 export const selectValidLocations = s => {
-    if (!s.sprayGate.season) {
-	return [];
+    let out = [];
+    for (let season in s.data.data) {
+	out = out.concat(Object.keys(s.data.data[season]));
     }
-    return Object.keys(s.data.data[s.sprayGate.season]);
+    return out;
 }
 export const selectValidVarieties = s => {
-    if (!s.sprayGate.season || !s.sprayGate.location) {
+    if (!s.sprayGate.location) {
 	return [];
     }
-    return Object.keys(s.data.data[s.sprayGate.season][s.sprayGate.location]);
-};
-export const selectSeasonLocationVarietySusceptible = (se, lo, va) => s => {
-    const d = s.data.data;
-    if (d[se] && d[se][lo]) {
-	return d[se][lo][va] === "Susceptible";
+    let out = [];
+    for (let season in s.data.data) {
+	if (!(s.sprayGate.location in s.data.data[season])) {
+	    continue;
+	}
+	out = out.concat(Object.keys(s.data.data[season][s.sprayGate.location]));
     }
-    return undefined;
+    return out;
+};
+const compareSeasons = (a,b) => {
+    const sa = a.split("/");
+    const sb = b.split("/");
+    const la = sa.length;
+    const lb = sb.length;
+
+    const aa = sa.reduce((a, b) => a + b)/la;
+    const ab = sa.reduce((a, b) => a + b)/lb;
+
+    return ab - aa;
+}
+export const selectLocationVarietySusceptible = (lo, va) => s => {
+    if (!lo || !va) {
+	return [undefined, undefined];
+    }
+    const d = s.data.data;
+    for (let se of Object.keys(s.data.data).sort(compareSeasons)) {
+	if (d[se][lo] && d[se][lo][va]) {
+	    return [d[se][lo][va] === "Susceptible", se];
+	}
+    }
+    return [undefined, undefined];
 };
 
 /* Reducer */

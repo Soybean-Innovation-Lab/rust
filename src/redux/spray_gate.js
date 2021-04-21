@@ -2,14 +2,13 @@
 //================================================================================
 export const sprayGateInitialState = {
     growthStageOptions: ["Early vegetative",
-			 "Late vegetative-R6",
+			 "Late vegetative (pod-filling)",
 			 "Beginning maturity"],
-    rustPresenceOptions: ["No rust present",
-			  "No rust present but spotted within 100km",
-			  "<10% rust on lower canopy",
-			  "<10% rust on mid-canopy",
-			  "rust present on upper canopy"],
-    season: undefined,
+    rustPresenceOptions: ["No rust present in field",
+			  "No rust present in field but spotted within 100km",
+			  "<10% disease observed on lower canopy and nowhere else on the plant",
+			  "<20% disease observed on the lower canopy and <10% disease in mid-canopy",
+			  ">10% disease observed in mid-canopy and anywhere in the upper canopy"],
     location: undefined,
     variety: undefined,
     growthStageSelection: 0,
@@ -21,7 +20,6 @@ const SET_RUST_PRESENCE_SELECTION_INDEX = "sprayGate/setRustPresenceSelection";
 const SET_GROWTH_STAGE_SELECTION_INDEX = "sprayGate/setGrowthStageSelection";
 const SET_LOCATION = "sprayGate/setLocation";
 const SET_VARIETY = "sprayGate/setVariety";
-const SET_SEASON = "sprayGate/setSeason";
 
 export function setRustPresenceSelection(value) {
     return {
@@ -47,12 +45,6 @@ export function setVariety(value) {
 	value: value
     };
 }
-export function setSeason(value) {
-    return {
-	type: SET_SEASON,
-	value: value
-    };
-}
 /* Selectors */
 //================================================================================
 export const selectGrowthStageOptions = (s) => s.sprayGate.growthStageOptions;
@@ -63,7 +55,6 @@ export const selectRustPresenceSelection= (s) => s.sprayGate.rustPresenceSelecti
 
 export const selectLocation = (s) => s.sprayGate.location;
 export const selectVariety = (s) => s.sprayGate.variety;
-export const selectSeason = (s) => s.sprayGate.season;
 
 export const getShouldSpray = (stage, presence, sus) => {
     let shouldSpray;
@@ -141,9 +132,6 @@ export function sprayGateReducer(state = sprayGateInitialState, action) {
 	break;
     case SET_VARIETY:
 	state.variety = action.value;
-	break;
-    case SET_SEASON:
-	state.season = action.value;
 	break;
     default:
 	break;
