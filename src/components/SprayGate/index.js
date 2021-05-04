@@ -58,10 +58,11 @@ export const SprayInfo = () => {
 	       </p>
          </div>
 	       <p>
-		   Please keep in mind that spraying as well as the number of times you spray is
-		   dependent on conducive conditions for the disease. These recommendations are
-		   given based on the assumption of continued conducive environments and disease
-		   progression.
+	Please keep in mind that spraying, as well as the number of times you
+    spray, is dependent on conducive conditions for the
+    disease. These recommendations are given based on the
+    assumption of continued conducive environments and disease
+    progression.
 	       </p>
 	   </div>;
 }
