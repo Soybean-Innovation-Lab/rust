@@ -16,7 +16,8 @@ import {
     selectGrowthStageOptions,
     selectRustPresenceSelection,
     selectGrowthStageSelection,
-    selectLocation,
+    selectCountry,
+    selectState,
     selectVariety,
     getShouldSpray,
 } from '../../redux/spray_gate';
@@ -51,10 +52,11 @@ const App = () => {
 
     const presence = useSelector(selectRustPresenceSelection);
     const stage = useSelector(selectGrowthStageSelection);
-    const location = useSelector(selectLocation);
+    const country = useSelector(selectCountry);
+    const state = useSelector(selectState);
     const variety = useSelector(selectVariety);
 
-    const [sus, season] = useSelector(selectLocationVarietySusceptible(location, variety));
+    const [sus, season] = useSelector(selectLocationVarietySusceptible(country, state, variety));
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     const DATA_URL = `${process.env.PUBLIC_URL}/data.json`;

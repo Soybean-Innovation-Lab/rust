@@ -4,19 +4,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     setRustPresenceSelection,
     setGrowthStageSelection,
-    setLocation,
+    setCountry,
+    setState,
     setVariety,
     selectRustPresenceOptions,
     selectGrowthStageOptions,
     selectRustPresenceSelection,
     selectGrowthStageSelection,
-    selectLocation,
+    selectCountry,
+    selectState,
     selectVariety,
     getShouldSpray,
 } from '../../redux/spray_gate';
 
 import {
-    selectValidLocations,
+    selectValidCountries,
+    selectValidStates,
     selectValidVarieties,
     selectLocationVarietySusceptible
 } from '../../redux/data';
@@ -42,10 +45,11 @@ const GeneralSelector = ({name, valSelector, optionsSelector, action, className}
 export const SprayInfo = () => {
     const presence = useSelector(selectRustPresenceSelection);
     const stage = useSelector(selectGrowthStageSelection);
-    const location = useSelector(selectLocation);
+    const country = useSelector(selectCountry);
+    const state = useSelector(selectState);
     const variety = useSelector(selectVariety);
 
-    const [sus, season] = useSelector(selectLocationVarietySusceptible(location, variety));
+    const [sus, season] = useSelector(selectLocationVarietySusceptible(country, state, variety));
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     return <div>
@@ -67,17 +71,18 @@ export const SprayInfo = () => {
 	   </div>;
 }
 export const SprayGate = () => {
-    const location = useSelector(selectLocation);
+    const country = useSelector(selectCountry);
+    const state = useSelector(selectState);
     const variety = useSelector(selectVariety);
 
-    const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(location, variety));
+    const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(country, state, variety));
     let susText = sus ? "sot resistant!" : "resistant!";
     let susNode = <div className={`border border-3 ${sus ? "border-danger" : "border-success"} shadow shadow-4 p-3 mt-3 text-center`}>
 		      <p className="fs-2 m-0"> <span className="text-decoration-underline">{variety}</span> showed a &nbsp;
           <span className="text-decoration-underline">{sus ? "TAN" : "RB"}</span>&nbsp;
            reaction during the&nbsp;
 			  <span className="text-decoration-underline">{trialSeason}</span> season at the &nbsp;
-        <span className="text-decoration-underline">{location}</span> PAT
+			  <span className="text-decoration-underline">{country}, {state} </span> PAT
 			  location. </p>
         <p className="fs-2 m-0">This indicated this variety is&nbsp;
         <span className="text-decoration-underline">{sus ? "susceptible" : "resistant"}
@@ -104,11 +109,18 @@ export const SprayGate = () => {
 					action={setRustPresenceSelection} />
 		   </div>
 		   <div className="row">
-		       <label className="col-md my-auto" htmlFor="location"> Nearest PAT Location: </label>
-		       <GeneralSelector className="col-md" name="location"
-					valSelector={selectLocation}
-					optionsSelector={selectValidLocations}
-					action={setLocation} />
+		       <label className="col-md my-auto" htmlFor="country"> Country: </label>
+		       <GeneralSelector className="col-md" name="country"
+					valSelector={selectCountry}
+					optionsSelector={selectValidCountries}
+					action={setCountry} />
+		   </div>
+		   <div className="row">
+		       <label className="col-md my-auto" htmlFor="state"> Nearest PAT Location: </label>
+		       <GeneralSelector className="col-md" name="state"
+					valSelector={selectState}
+					optionsSelector={selectValidStates(country)}
+					action={setState} />
 		   </div>
 		   <div className="row">
 		       <label htmlFor="variety" className="col-md my-auto"> Soybean Variety: </label>

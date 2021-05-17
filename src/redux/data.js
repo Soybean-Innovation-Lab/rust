@@ -28,23 +28,33 @@ export const selectErrorOccured = s => s.data.errorOccured;
 export const selectLoading = s => s.data.loading;
 
 // This may be a bad idea, but I'm gonna try it (I mean referring to external data)
-export const selectValidLocations = s => {
+export const selectValidCountries = s => {
     let out = [];
     for (let season in s.data.data) {
 	out = out.concat(Object.keys(s.data.data[season]));
     }
     return out;
 }
+// This may be a bad idea, but I'm gonna try it (I mean referring to external data)
+export const selectValidStates = c => s => {
+    let out = [];
+    for (let season in s.data.data) {
+	if (c in s.data.data[season]) {
+	    out = out.concat(Object.keys(s.data.data[season][c]));
+	}
+    }
+    return out;
+}
 export const selectValidVarieties = s => {
-    if (!s.sprayGate.location) {
+    if (!s.sprayGate.country && s.sprayGate.state) {
 	return [];
     }
     let out = [];
     for (let season in s.data.data) {
-	if (!(s.sprayGate.location in s.data.data[season])) {
+	if (!(s.sprayGate.country in s.data.data[season] && s.sprayGate.state in s.data.data[season][s.sprayGate.country])) {
 	    continue;
 	}
-	out = out.concat(Object.keys(s.data.data[season][s.sprayGate.location]));
+	out = out.concat(Object.keys(s.data.data[season][s.sprayGate.country][s.sprayGate.state]));
     }
     return out;
 };
@@ -59,14 +69,15 @@ const compareSeasons = (a,b) => {
 
     return ab - aa;
 }
-export const selectLocationVarietySusceptible = (lo, va) => s => {
-    if (!lo || !va) {
+export const selectLocationVarietySusceptible = (co, st, va) => s => {
+    console.log(co);
+    if (!co || !st || !va) {
 	return [undefined, undefined];
     }
     const d = s.data.data;
     for (let se of Object.keys(s.data.data).sort(compareSeasons)) {
-	if (d[se][lo] && d[se][lo][va]) {
-	    return [d[se][lo][va] === "Susceptible", se];
+	if (d[se][co] && d[se][co][st] && d[se][co][st][va]) {
+	    return [d[se][co][st][va] === "Susceptible", se];
 	}
     }
     return [undefined, undefined];
