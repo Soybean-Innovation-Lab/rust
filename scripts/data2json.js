@@ -43,6 +43,13 @@ let data = Papa.parse(fs.createReadStream(proc.argv[2]), {
 	    let v = row["Variety"];
 	    out[season][loc][v] = row["Disease Response"];
 	}
+	for (season of seasons) {
+	    for (loc of locations) {
+		if (season in out && loc in out[season] && Object.keys(out[season][loc]).length === 0) {
+		    delete out[season][loc];
+		}
+	    }
+	}
 	//console.log((out));
 	console.log(JSON.stringify(out));
     }
