@@ -75,21 +75,30 @@ export const SprayGate = () => {
     const state = useSelector(selectState);
     const variety = useSelector(selectVariety);
 
-    const [sus, trialSeason] = useSelector(selectLocationVarietySusceptible(country, state, variety));
-    let susText = sus ? "sot resistant!" : "resistant!";
-    let susNode = <div className={`border border-3 ${sus ? "border-danger" : "border-success"} shadow shadow-4 p-3 mt-3 text-center`}>
+    const [res, trialSeason] = useSelector(selectLocationVarietySusceptible(country, state, variety));
+    let susNode, borderColor;
+    if (res === "Unknown") {
+	borderColor = "border-warning";
+	susNode = <p className="fs-2 m-0"> There is no reaction data for <span className="text-decoration-underline">{variety}</span> at &nbsp; 
+		      <span className="text-decoration-underline">{state}, {country}</span> PAT Location. If you have rust reaction data, please contact SIL immediately at <a href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu </a>
+		  </p>;
+    } else {
+	let sus = res === "Susceptible";
+	borderColor = sus ? "border-danger" : "border-success";
+	    susNode = <>
 		      <p className="fs-2 m-0"> <span className="text-decoration-underline">{variety}</span> showed a &nbsp;
           <span className="text-decoration-underline">{sus ? "TAN" : "RB"}</span>&nbsp;
            reaction during the&nbsp;
 			  <span className="text-decoration-underline">{trialSeason}</span> season at the &nbsp;
-			  <span className="text-decoration-underline">{country}, {state} </span> PAT
+			  <span className="text-decoration-underline">{state}, {country} </span> PAT
 			  location. </p>
         <p className="fs-2 m-0">This indicated this variety is&nbsp;
         <span className="text-decoration-underline">{sus ? "susceptible" : "resistant"}
         </span> to this location's rust
 		      population. </p>
-		  </div>;
-    if (sus === undefined) {
+		  </>;
+    }
+    if (res === undefined) {
 	susNode = <> </>;
     }
     return <div className="mb-3">
@@ -132,6 +141,8 @@ export const SprayGate = () => {
 			   action={setVariety} />
 		   </div>
 	       </div>
-	       {susNode}
+	       <div className={`border border-3 ${borderColor} shadow shadow-4 p-3 mt-3 text-center`}>
+		   {susNode}
+	       </div>
 	   </div>;
 };

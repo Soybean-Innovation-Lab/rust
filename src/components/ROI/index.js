@@ -125,19 +125,19 @@ export const ROI = () => {
 	       </table>
 	       <div className="border border-3 shadow shadow-3 my-3 p-3">
 		   <h3> Definitions </h3>
-	       <dl class="row">
-		   <dt class="col-sm-3">Average yield increases</dt>
-		   <dd class="col-sm-9">based on timing and number of sprays are estimated based on select locations in Mueller, et al. 2009. Plant Disease 93(3):243-248. Yield increases from fungicide application are highly dependent on rust pressure. These averages are based on moderate rust pressure and will be lower or higher depending on conducive environment. </dd>
+	       <dl className="row">
+		   <dt className="col-sm-3">Average yield increases</dt>
+		   <dd className="col-sm-9">based on timing and number of sprays are estimated based on select locations in Mueller, et al. 2009. Plant Disease 93(3):243-248. Yield increases from fungicide application are highly dependent on rust pressure. These averages are based on moderate rust pressure and will be lower or higher depending on conducive environment. </dd>
 
 
-		   <dt class="col-sm-3">Increase in revenue/ha</dt>
-		   <dd class="col-sm-9">based off the estimated yield increase (MT/ha) multiplied by the price of grain ($/MT) </dd>
+		   <dt className="col-sm-3">Increase in revenue/ha</dt>
+		   <dd className="col-sm-9">based off the estimated yield increase (MT/ha) multiplied by the price of grain ($/MT) </dd>
 
-		   <dt class="col-sm-3">Gross margins/ha</dt>
-		   <dd class="col-sm-9">calculated by subtracting the cost of fungicide and labor per spray multiplied by the number of sprays from the increase in revenue/ha.</dd>
+		   <dt className="col-sm-3">Gross margins/ha</dt>
+		   <dd className="col-sm-9">calculated by subtracting the cost of fungicide and labor per spray multiplied by the number of sprays from the increase in revenue/ha.</dd>
 
-		   <dt class="col-sm-3">Return on inputs</dt>
-		   <dd class="col-sm-9">the gross margin/ha divided by the cost of fungicide/ha multiplied by the number of sprays. </dd>
+		   <dt className="col-sm-3">Return on inputs</dt>
+		   <dd className="col-sm-9">the gross margin/ha divided by the cost of fungicide/ha multiplied by the number of sprays. </dd>
 	       </dl>
 		   </div>
 

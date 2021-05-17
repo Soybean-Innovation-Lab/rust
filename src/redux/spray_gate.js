@@ -67,7 +67,7 @@ export const selectVariety = (s) => s.sprayGate.variety;
 export const getShouldSpray = (stage, presence, sus) => {
     let shouldSpray;
     let why;
-    if (sus) {
+    if (sus === "Susceptible") {
 	switch (stage) {
 	case sprayGateInitialState.growthStageOptions[0]:
 	    switch (presence) {
@@ -114,6 +114,9 @@ export const getShouldSpray = (stage, presence, sus) => {
 	    break;
 	}
 
+    } else if (sus === "Unknown") {
+	shouldSpray = false;
+	why = "There is no data about this variety/location";
     } else {
 	shouldSpray = false;
 	why = "There is no evidence applying fungicides to a resistant cultivar is an economically viable option.";

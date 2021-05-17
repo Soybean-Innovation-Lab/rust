@@ -37,9 +37,9 @@ import { setError,
 const NavigationComponent = ({leftLink, leftText, rightLink, rightText, rightClassName})=> {
   return <div className="d-flex w-100 flex-direction-row justify-content-between mb-3">
   <Link className={`px-3 btn btn-lg btn-primary ${leftLink ? "visible" : "invisible"}`} to={leftLink || ""}>
-  <i class="bi bi-arrow-left" style={{"font-size":"1.5rem"}}></i> {leftText} </Link>
+  <i className="bi bi-arrow-left" style={{"fontSize":"1.5rem"}}></i> {leftText} </Link>
   <Link className={`px-3 btn btn-lg btn-primary ${rightLink ? "visible" : "invisible"} ${rightClassName}`} to={rightLink || ""}>
-  {rightText} <i class="bi bi-arrow-right" style={{"font-size":"1.5rem"}}></i></Link>
+  {rightText} <i className="bi bi-arrow-right" style={{"fontSize":"1.5rem"}}></i></Link>
   </div>;
 }
 
