@@ -2,7 +2,7 @@
 //================================================================================
 export const sprayGateInitialState = {
     growthStageOptions: ["Early vegetative",
-			 "Late vegetative (pod-filling)",
+			 "Late vegetative (pod-filling) R1-R6",
 			 "Beginning maturity"],
     rustPresenceOptions: ["No rust present in field",
 			  "No rust present in field but spotted within 100km",
@@ -82,7 +82,7 @@ export const getShouldSpray = (stage, presence, sus) => {
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 	    case sprayGateInitialState.rustPresenceOptions[3]:
-	    case sprayGateInitialState.rustPresenceOptions[4]:
+		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
 		why = "Before plants reach R1, there is no major threat to yield. If conditions stay conducive and disease progresses consider spraying at late vegetative stage";
 		break;
