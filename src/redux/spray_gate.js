@@ -9,7 +9,8 @@ export const sprayGateInitialState = {
 			  "<10% disease observed on lower canopy and nowhere else on the plant",
 			  "<20% disease observed on the lower canopy and <10% disease in mid-canopy",
 			  ">10% disease observed in mid-canopy and anywhere in the upper canopy"],
-    location: undefined,
+    country: undefined,
+    state: undefined,
     variety: undefined,
     growthStageSelection: 0,
     rustPresenceSelection: 0,
@@ -18,7 +19,8 @@ export const sprayGateInitialState = {
 //================================================================================
 const SET_RUST_PRESENCE_SELECTION_INDEX = "sprayGate/setRustPresenceSelection";
 const SET_GROWTH_STAGE_SELECTION_INDEX = "sprayGate/setGrowthStageSelection";
-const SET_LOCATION = "sprayGate/setLocation";
+const SET_COUNTRY = "sprayGate/setCountry";
+const SET_STATE = "sprayGate/setState";
 const SET_VARIETY = "sprayGate/setVariety";
 
 export function setRustPresenceSelection(value) {
@@ -33,9 +35,15 @@ export function setGrowthStageSelection(value) {
 	value: value
     };
 }
-export function setLocation(value) {
+export function setCountry(value) {
     return {
-	type: SET_LOCATION,
+	type: SET_COUNTRY,
+	value: value
+    };
+}
+export function setState(value) {
+    return {
+	type: SET_STATE,
 	value: value
     };
 }
@@ -53,13 +61,14 @@ export const selectGrowthStageSelection= (s) => s.sprayGate.growthStageSelection
 export const selectRustPresenceOptions = (s) => s.sprayGate.rustPresenceOptions;
 export const selectRustPresenceSelection= (s) => s.sprayGate.rustPresenceSelection;
 
-export const selectLocation = (s) => s.sprayGate.location;
+export const selectCountry = (s) => s.sprayGate.country;
+export const selectState = (s) => s.sprayGate.state;
 export const selectVariety = (s) => s.sprayGate.variety;
 
 export const getShouldSpray = (stage, presence, sus) => {
     let shouldSpray;
     let why;
-    if (sus) {
+    if (sus === "Susceptible") {
 	switch (stage) {
 	case sprayGateInitialState.growthStageOptions[0]:
 	    switch (presence) {
@@ -73,7 +82,7 @@ export const getShouldSpray = (stage, presence, sus) => {
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 	    case sprayGateInitialState.rustPresenceOptions[3]:
-		case sprayGateInitialState.rustPresenceOptions[4]:
+	    case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
 		why = "Before plants reach R1, there is no major threat to yield. If conditions stay conducive and disease progresses consider spraying at late vegetative stage";
 		break;
@@ -98,7 +107,7 @@ export const getShouldSpray = (stage, presence, sus) => {
 		shouldSpray = true;
 		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
 		break;
-		case sprayGateInitialState.rustPresenceOptions[4]:
+	    case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
 		why = "The infection is too severe and spraying is no longer economically viable";
 		break;
@@ -111,6 +120,9 @@ export const getShouldSpray = (stage, presence, sus) => {
 	    break;
 	}
 
+    } else if (sus === "Unknown") {
+	shouldSpray = false;
+	why = "There is no data about this variety/location";
     } else {
 	shouldSpray = false;
 	why = "There is no evidence applying fungicides to a resistant cultivar is an economically viable option.";
@@ -130,8 +142,17 @@ export function sprayGateReducer(state = sprayGateInitialState, action) {
     case SET_GROWTH_STAGE_SELECTION_INDEX:
 	state.growthStageSelection= action.value;
 	break;
-    case SET_LOCATION:
-	state.location = action.value;
+    case SET_COUNTRY:
+	if (state.country !== action.value) {
+	    state.state = undefined;
+	}
+	state.country = action.value;
+	break;
+    case SET_STATE:
+	if (state.state !== action.value) {
+	    state.variety = undefined;
+	}
+	state.state = action.value;
 	break;
     case SET_VARIETY:
 	state.variety = action.value;
