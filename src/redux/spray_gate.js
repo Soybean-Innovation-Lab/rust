@@ -7,6 +7,7 @@ export const sprayGateInitialState = {
     rustPresenceOptions: ["No rust present in field",
 			  "No rust present in field but spotted within 100km",
 			  "<10% disease observed on lower canopy and nowhere else on the plant",
+			  "<20% disease observed on the lower canopy and <10% disease in mid-canopy",
 			  ">10% disease observed in mid-canopy and anywhere in the upper canopy"],
     location: undefined,
     variety: undefined,
@@ -72,6 +73,7 @@ export const getShouldSpray = (stage, presence, sus) => {
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 	    case sprayGateInitialState.rustPresenceOptions[3]:
+		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
 		why = "Before plants reach R1, there is no major threat to yield. If conditions stay conducive and disease progresses consider spraying at late vegetative stage";
 		break;
@@ -93,6 +95,10 @@ export const getShouldSpray = (stage, presence, sus) => {
 		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[3]:
+		shouldSpray = true;
+		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
+		break;
+		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
 		why = "The infection is too severe and spraying is no longer economically viable";
 		break;
