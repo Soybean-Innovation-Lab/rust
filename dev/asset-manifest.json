@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/rust-spray-guide/dev/static/css/main.dfc49db7.chunk.css",
-    "main.js": "/rust-spray-guide/dev/static/js/main.8d3aaaf6.chunk.js",
-    "main.js.map": "/rust-spray-guide/dev/static/js/main.8d3aaaf6.chunk.js.map",
+    "main.js": "/rust-spray-guide/dev/static/js/main.71158028.chunk.js",
+    "main.js.map": "/rust-spray-guide/dev/static/js/main.71158028.chunk.js.map",
     "runtime-main.js": "/rust-spray-guide/dev/static/js/runtime-main.cce44e28.js",
     "runtime-main.js.map": "/rust-spray-guide/dev/static/js/runtime-main.cce44e28.js.map",
     "static/css/2.7af543a1.chunk.css": "/rust-spray-guide/dev/static/css/2.7af543a1.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.7af543a1.chunk.css",
     "static/js/2.f68f069d.chunk.js",
     "static/css/main.dfc49db7.chunk.css",
-    "static/js/main.8d3aaaf6.chunk.js"
+    "static/js/main.71158028.chunk.js"
   ]
 }
