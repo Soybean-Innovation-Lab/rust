@@ -79,7 +79,7 @@ export const ROI = () => {
 			   Number of Sprays
 		       </th>
 		       <th>
-			   Average Yield
+			   Average Yield (MT/ha)
 		       </th>
 		       <th>
 			   Increase in Revenue/ha
