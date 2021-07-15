@@ -79,7 +79,7 @@ export const ROI = () => {
 			   Number of Sprays
 		       </th>
 		       <th>
-			   Average Yield
+			   Average Yield (MT/ha)
 		       </th>
 		       <th>
 			   Increase in Revenue/ha
@@ -105,7 +105,7 @@ export const ROI = () => {
 			       {d.sprays}
 			   </td>
 			   <td>
-			       ${d.avgYield.toFixed(2)}
+			       {d.avgYield.toFixed(2)}
 			   </td>
 			   <td>
 			       ${d.incRev.toFixed(2)}
