@@ -2,7 +2,7 @@
 //================================================================================
 export const sprayGateInitialState = {
     growthStageOptions: ["Early vegetative",
-			 "Late vegetative (pod-filling)",
+			 "Late vegetative (pod-filling) R1-R6",
 			 "Beginning maturity"],
     rustPresenceOptions: ["No rust present in field",
 			  "No rust present in field but spotted within 100km",
