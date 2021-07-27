@@ -78,10 +78,12 @@ export const SprayGate = () => {
     const [res, trialSeason] = useSelector(selectLocationVarietySusceptible(country, state, variety));
     let susNode, borderColor;
     if (res === "Unknown") {
+		/*
 	borderColor = "border-warning";
 	susNode = <p className="fs-2 m-0"> There is no reaction data for <span className="text-decoration-underline">{variety}</span> at &nbsp; 
 		      <span className="text-decoration-underline">{state}, {country}</span> PAT Location. If you have rust reaction data, please contact SIL immediately at <a href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu </a>
 		  </p>;
+		  */
     } else {
 	let sus = res === "Susceptible";
 	borderColor = sus ? "border-danger" : "border-success";
@@ -117,32 +119,9 @@ export const SprayGate = () => {
 					optionsSelector={selectRustPresenceOptions}
 					action={setRustPresenceSelection} />
 		   </div>
-		   <div className="row">
-		       <label className="col-md my-auto" htmlFor="country"> Country: </label>
-		       <GeneralSelector className="col-md" name="country"
-					valSelector={selectCountry}
-					optionsSelector={selectValidCountries}
-					action={setCountry} />
-		   </div>
-		   <div className="row">
-		       <label className="col-md my-auto" htmlFor="state"> Nearest PAT Location: </label>
-		       <GeneralSelector className="col-md" name="state"
-					valSelector={selectState}
-					optionsSelector={selectValidStates(country)}
-					action={setState} />
-		   </div>
-		   <div className="row">
-		       <label htmlFor="variety" className="col-md my-auto"> Soybean Variety: </label>
-		       <GeneralSelector
-			   className="col-md"
-			   name="variety"
-			   valSelector={selectVariety}
-			   optionsSelector={selectValidVarieties}
-			   action={setVariety} />
-		   </div>
+		   
+		   
 	       </div>
-	       <div className={`border border-3 ${borderColor} shadow shadow-4 p-3 mt-3 text-center`}>
-		   {susNode}
-	       </div>
+	       
 	   </div>;
 };
