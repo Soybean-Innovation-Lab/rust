@@ -16,6 +16,9 @@ import {
 
 export const ROIInfo = () => {
     return <div>
+		<a href="https://www.soybeaninnovationlab.illinois.edu/">
+				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
+				</a>
 	       <h1> What is the economic gain of spraying fungicide?</h1>
          <p className="fs-3">Even when there is a yield increase potential by fungicide
          application, the cost of spraying and gross margin increases still need
@@ -38,6 +41,9 @@ export const ROI = () => {
     const roi = useSelector(selectROIResults);
 
     return <div>
+		<a href="https://www.soybeaninnovationlab.illinois.edu/">
+				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
+				</a>
       <h1> Return on Investment </h1>
 	       <div className="border border-3 shadow shadow-3 p-3 px-5 mx-auto" style={{"width":"max-content"}}>
 	<div className="row my-1">
