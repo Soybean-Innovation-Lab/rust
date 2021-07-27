@@ -1,28 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import {
     setRustPresenceSelection,
     setGrowthStageSelection,
-    setCountry,
-    setState,
-    setVariety,
+    
     selectRustPresenceOptions,
     selectGrowthStageOptions,
     selectRustPresenceSelection,
     selectGrowthStageSelection,
-    selectCountry,
-    selectState,
-    selectVariety,
+    
     getShouldSpray,
 } from '../../redux/spray_gate';
 
-import {
-    selectValidCountries,
-    selectValidStates,
-    selectValidVarieties,
-    selectLocationVarietySusceptible
-} from '../../redux/data';
 
 const GeneralSelector = ({name, valSelector, optionsSelector, action, className}) => {
     const dispatch = useDispatch();
@@ -43,13 +32,12 @@ const GeneralSelector = ({name, valSelector, optionsSelector, action, className}
 	   </select>;
 }
 export const SprayInfo = () => {
+	
     const presence = useSelector(selectRustPresenceSelection);
     const stage = useSelector(selectGrowthStageSelection);
-    const country = useSelector(selectCountry);
-    const state = useSelector(selectState);
-    const variety = useSelector(selectVariety);
 
-    const [sus, season] = useSelector(selectLocationVarietySusceptible(country, state, variety));
+
+    const sus = "Susceptible";
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     return <div>
@@ -71,38 +59,8 @@ export const SprayInfo = () => {
 	   </div>;
 }
 export const SprayGate = () => {
-    const country = useSelector(selectCountry);
-    const state = useSelector(selectState);
-    const variety = useSelector(selectVariety);
 
-    const [res, trialSeason] = useSelector(selectLocationVarietySusceptible(country, state, variety));
-    let susNode, borderColor;
-    if (res === "Unknown") {
-		/*
-	borderColor = "border-warning";
-	susNode = <p className="fs-2 m-0"> There is no reaction data for <span className="text-decoration-underline">{variety}</span> at &nbsp; 
-		      <span className="text-decoration-underline">{state}, {country}</span> PAT Location. If you have rust reaction data, please contact SIL immediately at <a href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu </a>
-		  </p>;
-		  */
-    } else {
-	let sus = res === "Susceptible";
-	borderColor = sus ? "border-danger" : "border-success";
-	    susNode = <>
-		      <p className="fs-2 m-0"> <span className="text-decoration-underline">{variety}</span> showed a &nbsp;
-          <span className="text-decoration-underline">{sus ? "TAN" : "RB"}</span>&nbsp;
-           reaction during the&nbsp;
-			  <span className="text-decoration-underline">{trialSeason}</span> season at the &nbsp;
-			  <span className="text-decoration-underline">{state}, {country} </span> PAT
-			  location. </p>
-        <p className="fs-2 m-0">This indicated this variety is&nbsp;
-        <span className="text-decoration-underline">{sus ? "susceptible" : "resistant"}
-        </span> to this location's rust
-		      population. </p>
-		  </>;
-    }
-    if (res === undefined) {
-	susNode = <> </>;
-    }
+    
     return <div className="mb-3">
 	       <div className="border border-3 shadow shadow-4 p-3">
 		   <div className="row">
@@ -112,6 +70,7 @@ export const SprayGate = () => {
 					optionsSelector={selectGrowthStageOptions}
 					action={setGrowthStageSelection} />
 		   </div>
+
 		   <div className="row">
 		       <label className="col-md my-auto" htmlFor="rustPresence"> Rust Pressure: </label>
 		       <GeneralSelector className="col-md" name="rustPresence"
@@ -120,8 +79,7 @@ export const SprayGate = () => {
 					action={setRustPresenceSelection} />
 		   </div>
 		   
-		   
 	       </div>
-	       
+	    
 	   </div>;
 };
