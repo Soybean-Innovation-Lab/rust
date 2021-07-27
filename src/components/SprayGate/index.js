@@ -70,6 +70,7 @@ export const SprayGate = () => {
 					optionsSelector={selectGrowthStageOptions}
 					action={setGrowthStageSelection} />
 		   </div>
+
 		   <div className="row">
 		       <label className="col-md my-auto" htmlFor="rustPresence"> Rust Pressure: </label>
 		       <GeneralSelector className="col-md" name="rustPresence"
