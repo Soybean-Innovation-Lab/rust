@@ -110,6 +110,7 @@ export const SprayGate = () => {
 					optionsSelector={selectGrowthStageOptions}
 					action={setGrowthStageSelection} />
 		   </div>
+
 		   <div className="row">
 		       <label className="col-md my-auto" htmlFor="rustPresence"> Rust Pressure: </label>
 		       <GeneralSelector className="col-md" name="rustPresence"
@@ -117,20 +118,8 @@ export const SprayGate = () => {
 					optionsSelector={selectRustPresenceOptions}
 					action={setRustPresenceSelection} />
 		   </div>
-		   <div className="row">
-		       <label className="col-md my-auto" htmlFor="country"> Country: </label>
-		       <GeneralSelector className="col-md" name="country"
-					valSelector={selectCountry}
-					optionsSelector={selectValidCountries}
-					action={setCountry} />
-		   </div>
-		   <div className="row">
-		       <label className="col-md my-auto" htmlFor="state"> Nearest PAT Location: </label>
-		       <GeneralSelector className="col-md" name="state"
-					valSelector={selectState}
-					optionsSelector={selectValidStates(country)}
-					action={setState} />
-		   </div>
+		   
+		   
 		   <div className="row">
 		       <label htmlFor="variety" className="col-md my-auto"> Soybean Variety: </label>
 		       <GeneralSelector
