@@ -74,17 +74,14 @@ export const getShouldSpray = (stage, presence, sus) => {
 	    switch (presence) {
 	    case sprayGateInitialState.rustPresenceOptions[0]:
 		shouldSpray = false;
-		why = "There is no current threat of a rust outbreak";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[1]:
 		shouldSpray = false;
-		why = "Rust spores are windborne and can travel quickly given conducive conditions. Increase scouting and prepare to spray if rust is identified in your fields";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 	    case sprayGateInitialState.rustPresenceOptions[3]:
-	    case sprayGateInitialState.rustPresenceOptions[4]:
+		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
-		why = "Before plants reach R1, there is no major threat to yield. If conditions stay conducive and disease progresses consider spraying at late vegetative stage";
 		break;
 
 	    }
@@ -93,11 +90,9 @@ export const getShouldSpray = (stage, presence, sus) => {
 	    switch (presence) {
 	    case sprayGateInitialState.rustPresenceOptions[0]:
 		shouldSpray = false;
-		why = "There is no current threat of a rust outbreak";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[1]:
 		shouldSpray = false;
-		why = "Rust spores are windborne and can travel quickly given conducive conditions. Increase scouting and prepare to spray if rust is identified in your fields";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 		shouldSpray = true;
@@ -107,16 +102,14 @@ export const getShouldSpray = (stage, presence, sus) => {
 		shouldSpray = true;
 		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
 		break;
-	    case sprayGateInitialState.rustPresenceOptions[4]:
+		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
-		why = "The infection is too severe and spraying is no longer economically viable";
 		break;
 
 	    }
 	    break;
 	case sprayGateInitialState.growthStageOptions[0]:
 	    shouldSpray = false;
-	    why = "Spraying nearing or after pods are full will not be an economically viable option since it will not have an impact on yields";
 	    break;
 	}
 
