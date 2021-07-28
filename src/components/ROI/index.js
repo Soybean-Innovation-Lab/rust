@@ -20,12 +20,10 @@ export const ROIInfo = () => {
 				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
 				</a>
 	       <h1> What is the economic gain of spraying fungicide?</h1>
-         <p className="fs-3">Even when there is a yield increase potential by fungicide
-         application, the cost of spraying and gross margin increases still need
-         to be considered to determine if spraying is an economically viable
-         option. Below please enter in the growth stage you plan to start
-         spraying your plants, the cost of fungicide per application per
-         hectare, plot size in hectares, and the price of grain. Please use <a href="https://www.xe.com/currencyconverter/" target="_blank">
+         <p className="fs-3">Even when there is a yield preservation potential by fungicide application, the cost of spraying and the return on the fungicide investment in terms of yield preservation still
+
+needs to be evaluated to determine if spraying is an economically viable option. In the next screen, please enter in the cost of fungicide per application per hectare, plot size in hectares, the price of grain, and the cost of labor per hectare and spray.
+ Please use <a href="https://www.xe.com/currencyconverter/" target="_blank">
          this currency converter </a>to convert local currency to US Dollars ($) </p>
 	</div>;
 };
@@ -49,7 +47,7 @@ export const ROI = () => {
 	<div className="row my-1">
 	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
 		       name="costOfFungicide" state={costOfFungicide}
-		       set={setCostOfFungicide} units="/MT" formatter={(v) => `\$${v}`}>
+		       set={setCostOfFungicide} units="/ha" formatter={(v) => `\$${v}`}>
 		Cost of Fungicide
 	    </MakeInput>
 	</div>
@@ -84,17 +82,30 @@ export const ROI = () => {
 		       <th>
 			   Number of Sprays
 		       </th>
-		       <th>
-			   Average Yield (MT/ha)
+			   <th>
+			   Fungicide per Hectare
+		       </th>
+			   <th>
+			   Labor per Hectare
+		       </th>
+			   <th>
+			   Fungicide Total
+		       </th>
+			   <th>
+			   Labor Total
+		       </th>
+			   <th>
+			   Combined Total
 		       </th>
 		       <th>
-			   Increase in Revenue/ha
+			   Preserved Yield (MT/ha)
+		       </th>
+		       
+		       <th>
+			   Total Revenue
 		       </th>
 		       <th>
-			   Increase in Total Revenue
-		       </th>
-		       <th>
-			   Revenue Costs
+			   Net Margin/Revenue Costs
 		       </th>
 		       <th>
 			   Return on inputs
@@ -111,19 +122,32 @@ export const ROI = () => {
 			       {d.sprays}
 			   </td>
 			   <td>
-			       {d.avgYield.toFixed(2)}
+			       ${d.sprays * costOfFungicide}
 			   </td>
 			   <td>
-			       ${d.incRev.toFixed(2)}
+			       ${d.sprays * costOfLabor}
 			   </td>
+			   <td>
+			       ${d.sprays * costOfFungicide * plotSize}
+			   </td>
+			   <td>
+			       ${d.sprays * costOfLabor * plotSize}
+			   </td>
+			   <td>
+			       ${d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize}
+			   </td>
+			   <td>
+			       {d.avgYield.toFixed(2)}
+			   </td>
+			   
 			   <td>
 			       ${d.incRevTotal.toFixed(2)}
 			   </td>
 			   <td>
-			       ${d.revCosts.toFixed(2)}
+			       ${(d.incRevTotal.toFixed(2) - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))}
 			   </td>
 			   <td>
-			       ${d.returnOnIn.toFixed(2)}
+			       ${((d.incRevTotal.toFixed(2) - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))/(d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize)).toFixed(2)}
 			   </td>
 		       </tr>
 		   ))}
@@ -141,9 +165,12 @@ export const ROI = () => {
 
 		   <dt className="col-sm-3">Gross margins/ha</dt>
 		   <dd className="col-sm-9">calculated by subtracting the cost of fungicide and labor per spray multiplied by the number of sprays from the increase in revenue/ha.</dd>
+		   
+		   <dt className="col-sm-3">Net margin</dt>
+		   <dd className="col-sm-9">Total revenue – Total cost</dd>
 
-		   <dt className="col-sm-3">Return on inputs</dt>
-		   <dd className="col-sm-9">the gross margin/ha divided by the cost of fungicide/ha multiplied by the number of sprays. </dd>
+		   <dt className="col-sm-3">Return of inputs (ROI)</dt>
+		   <dd className="col-sm-9">How much net income (return) do I get per dollar of expense (fungicide + labor) </dd>
 	       </dl>
 		   </div>
 
