@@ -8,12 +8,7 @@ import {
 } from "react-router-dom";
 
 import {
-    setRustPresenceSelection,
-    setGrowthStageSelection,
-    setLocation,
-    setVariety,
-    selectRustPresenceOptions,
-    selectGrowthStageOptions,
+    
     selectRustPresenceSelection,
     selectGrowthStageSelection,
     selectCountry,
@@ -21,9 +16,7 @@ import {
     selectVariety,
     getShouldSpray,
 } from '../../redux/spray_gate';
-import {
-    selectLocationVarietySusceptible
-} from '../../redux/data';
+
 
 import { SprayGate, SprayInfo } from '../SprayGate';
 import { ROI, ROIInfo } from '../ROI';
@@ -56,7 +49,7 @@ const App = () => {
     const state = useSelector(selectState);
     const variety = useSelector(selectVariety);
 
-    const [sus, season] = useSelector(selectLocationVarietySusceptible(country, state, variety));
+    const sus = "Susceptible";
 
     const shouldSpray = getShouldSpray(stage, presence, sus);
     const DATA_URL = `${process.env.PUBLIC_URL}/data.json`;
@@ -81,6 +74,7 @@ const App = () => {
 
     return <Router>
 	       <div className="container">
+		
 		   <Switch>
 		       <Route path="/roi">
 			   <ROI />
@@ -95,8 +89,13 @@ const App = () => {
                                  leftLink="/spray-results"/>
 		       </Route>
 		       <Route path="/spray-results">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
+				</a>
 			   <h1> Should I Spray? &mdash; Results</h1>
+			   
 			   <SprayInfo />
+			   
             <NavigationComponent rightLink="/roi-info"
                                  rightText="ROI Info"
                                  rightClassName={shouldSpray.shouldSpray ? "" : "disabled"}
@@ -104,18 +103,12 @@ const App = () => {
                                  leftLink="/spray-gate"/>
 		       </Route>
 		       <Route path="/spray-gate">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
+				</a>
 			   <h1> Should I Spray? </h1>
-			   <p> Deciding to spray fungicides to control rust is
-			       dependent on several factors including age of the plant, susceptibility to rust,
-			       presence of rust in the field, and conducive environment. Below please enter the
-			       current growth stage of your crop, current rust pressure, and what variety you
-			       are using along with the nearest PAT location. The location and variety
-			       combination will allow us to determine if your variety is susceptible to your
-			   local rust population.  </p>
-	       <p> Is your variety not listed? We may not have sufficient data
-	       to confirm resistance or susceptibility of a variety in your
-	       location. If you are interested in a variety not included on the
-	       list above, please contact us at <a
+			   <p> Deciding to spray fungicides to control rust is dependent on several factors including age of the plant, susceptibility to rust, presence of rust in the field, and conducive environment. Below please enter the current growth stage of your crop and current rust pressure. This information will allow us to determine whether you need to spray or not.</p>
+	       <p> If you have any question, please contact us at <a
 	       href="mailto:soybeaninnovationlab@illinois.edu">soybeaninnovationlab@illinois.edu</a>
 	       </p>
 			   <SprayGate />
@@ -125,7 +118,11 @@ const App = () => {
                                  leftLink="/"/>
 		       </Route>
 		       <Route path="/">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
+				</a>
 			   <h1> Rust Spray Calculator</h1>
+			   
 			   <p>
 			   <a target="_blank"
 			       href="https://7b7dcda8-7264-4c41-b9a2-b2e845d0c5d1.usrfiles.com/ugd/7b7dcd_e31432ab4564440d86637434fe1dd580.pdf">
