@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/rust-spray-guide/main/static/css/main.dfc49db7.chunk.css",
-    "main.js": "/rust-spray-guide/main/static/js/main.4705c204.chunk.js",
-    "main.js.map": "/rust-spray-guide/main/static/js/main.4705c204.chunk.js.map",
-    "runtime-main.js": "/rust-spray-guide/main/static/js/runtime-main.8e9dfa16.js",
-    "runtime-main.js.map": "/rust-spray-guide/main/static/js/runtime-main.8e9dfa16.js.map",
+    "main.js": "/rust-spray-guide/main/static/js/main.7f8969b3.chunk.js",
+    "main.js.map": "/rust-spray-guide/main/static/js/main.7f8969b3.chunk.js.map",
+    "runtime-main.js": "/rust-spray-guide/main/static/js/runtime-main.22106c2c.js",
+    "runtime-main.js.map": "/rust-spray-guide/main/static/js/runtime-main.22106c2c.js.map",
     "static/css/2.ef65ded5.chunk.css": "/rust-spray-guide/main/static/css/2.ef65ded5.chunk.css",
-    "static/js/2.78e736b9.chunk.js": "/rust-spray-guide/main/static/js/2.78e736b9.chunk.js",
-    "static/js/2.78e736b9.chunk.js.map": "/rust-spray-guide/main/static/js/2.78e736b9.chunk.js.map",
-    "static/js/3.734805be.chunk.js": "/rust-spray-guide/main/static/js/3.734805be.chunk.js",
-    "static/js/3.734805be.chunk.js.map": "/rust-spray-guide/main/static/js/3.734805be.chunk.js.map",
+    "static/js/2.5ecfea98.chunk.js": "/rust-spray-guide/main/static/js/2.5ecfea98.chunk.js",
+    "static/js/2.5ecfea98.chunk.js.map": "/rust-spray-guide/main/static/js/2.5ecfea98.chunk.js.map",
+    "static/js/3.f15af97e.chunk.js": "/rust-spray-guide/main/static/js/3.f15af97e.chunk.js",
+    "static/js/3.f15af97e.chunk.js.map": "/rust-spray-guide/main/static/js/3.f15af97e.chunk.js.map",
     "index.html": "/rust-spray-guide/main/index.html",
     "static/css/2.ef65ded5.chunk.css.map": "/rust-spray-guide/main/static/css/2.ef65ded5.chunk.css.map",
     "static/css/main.dfc49db7.chunk.css.map": "/rust-spray-guide/main/static/css/main.dfc49db7.chunk.css.map",
-    "static/js/2.78e736b9.chunk.js.LICENSE.txt": "/rust-spray-guide/main/static/js/2.78e736b9.chunk.js.LICENSE.txt",
+    "static/js/2.5ecfea98.chunk.js.LICENSE.txt": "/rust-spray-guide/main/static/js/2.5ecfea98.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/rust-spray-guide/main/static/media/bootstrap-icons.cc252f2c.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.8e9dfa16.js",
+    "static/js/runtime-main.22106c2c.js",
     "static/css/2.ef65ded5.chunk.css",
-    "static/js/2.78e736b9.chunk.js",
+    "static/js/2.5ecfea98.chunk.js",
     "static/css/main.dfc49db7.chunk.css",
-    "static/js/main.4705c204.chunk.js"
+    "static/js/main.7f8969b3.chunk.js"
   ]
 }
