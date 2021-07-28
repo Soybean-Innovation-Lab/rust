@@ -89,9 +89,10 @@ const App = () => {
                                  leftLink="/spray-results"/>
 		       </Route>
 		       <Route path="/spray-results">
-			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/" target="_blank">
 				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
 				</a>
+				
 			   <h1> Should I Spray? &mdash; Results</h1>
 			   
 			   <SprayInfo />
@@ -103,7 +104,7 @@ const App = () => {
                                  leftLink="/spray-gate"/>
 		       </Route>
 		       <Route path="/spray-gate">
-			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/" target="_blank">
 				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
 				</a>
 			   <h1> Should I Spray? </h1>
@@ -118,7 +119,7 @@ const App = () => {
                                  leftLink="/"/>
 		       </Route>
 		       <Route path="/">
-			   <a href="https://www.soybeaninnovationlab.illinois.edu/">
+			   <a href="https://www.soybeaninnovationlab.illinois.edu/" target="_blank">
 				<img src="https://static.wixstatic.com/media/7b7dcd_a5000485d1a54ddab8ec49a70d547fb8~mv2.png/v1/fill/w_360,h_348,al_c,q_85,usm_0.66_1.00_0.01/SIL%20Vertical%20Logo%20square.webp" width="150" height="140"></img>
 				</a>
 			   <h1> Rust Spray Calculator</h1>
