@@ -96,11 +96,11 @@ export const getShouldSpray = (stage, presence, sus) => {
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[2]:
 		shouldSpray = true;
-		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
+		why = "Spraying a fungicide may suppress the rust outbreak and significantly preserve yields";
 		break;
 	    case sprayGateInitialState.rustPresenceOptions[3]:
 		shouldSpray = true;
-		why = "Spraying a fungicide may suppress rust outbreak and significantly increase yields";
+		why = "Spraying a fungicide may suppress the rust outbreak and significantly preserve yields";
 		break;
 		case sprayGateInitialState.rustPresenceOptions[4]:
 		shouldSpray = false;
