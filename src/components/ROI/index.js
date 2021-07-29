@@ -122,19 +122,19 @@ export const ROI = () => {
 			       {d.sprays}
 			   </td>
 			   <td>
-			       ${d.sprays * costOfFungicide}
+			       ${(d.sprays * costOfFungicide).toFixed(2)}
 			   </td>
 			   <td>
-			       ${d.sprays * costOfLabor}
+			       ${(d.sprays * costOfLabor).toFixed(2)}
 			   </td>
 			   <td>
-			       ${d.sprays * costOfFungicide * plotSize}
+			       ${(d.sprays * costOfFungicide * plotSize).toFixed(2)}
 			   </td>
 			   <td>
-			       ${d.sprays * costOfLabor * plotSize}
+			       ${(d.sprays * costOfLabor * plotSize).toFixed(2)}
 			   </td>
 			   <td>
-			       ${d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize}
+			       ${(d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize).toFixed(2)}
 			   </td>
 			   <td>
 			       {d.avgYield.toFixed(2)}
@@ -144,10 +144,10 @@ export const ROI = () => {
 			       ${d.incRevTotal.toFixed(2)}
 			   </td>
 			   <td>
-			       ${(d.incRevTotal.toFixed(2) - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))}
+			       ${((d.incRevTotal - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))).toFixed(2)}
 			   </td>
 			   <td>
-			       ${((d.incRevTotal.toFixed(2) - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))/(d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize)).toFixed(2)}
+			       ${((d.incRevTotal - (d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize))/(d.sprays * costOfLabor * plotSize + d.sprays * costOfFungicide * plotSize)).toFixed(2)}
 			   </td>
 		       </tr>
 		   ))}
