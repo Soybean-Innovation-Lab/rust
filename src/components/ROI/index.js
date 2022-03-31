@@ -54,7 +54,7 @@ export const ROI = () => {
 	<div className="row my-1">
 	    <MakeInput labelClassNames="col-md-6 text-nowrap" inputClassNames="col-md-6"
 		       name="plotSize" state={plotSize}
-		       set={plotSize} units="ha">
+		       set={setPlotSize} units="ha">
 		Plot Size
 	       </MakeInput>
 	</div>
